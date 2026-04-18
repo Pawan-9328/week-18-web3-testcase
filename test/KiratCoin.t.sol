@@ -65,6 +65,12 @@ function testfailApprovals() public {
    c.transferFrom(address(this), 0x1483783755C6d08070B69Dd9e3391c7C00e5F23c,20);
 
 }
+
+function testFailTransfer() public {
+  c.mint(address(this), 20);
+  c.transfer(0x1483783755C6d08070B69Dd9e3391c7C00e5F23c, 100);
+  
+}
     
     
 }
