@@ -24,6 +24,23 @@ contract TestKiratCoin is Test {
     // after mint → should be 100
     assertEq(c.balanceOf(0x1483783755C6d08070B69Dd9e3391c7C00e5F23c), 100, "ok");
 }
+
+function testTransfer() public{
+     c.mint(address(this), 100);
+     c.transfer(0x1483783755C6d08070B69Dd9e3391c7C00e5F23c, 50);
+
+
+     assertEq(c.balanceOf(address(this)),50);
+     assertEq(c.balanceOf(0x1483783755C6d08070B69Dd9e3391c7C00e5F23c), 50);
+
+     // back the money to the original guy 
+     vm.prank(0x1483783755C6d08070B69Dd9e3391c7C00e5F23c);
+     c.transfer(address(this), 50);
+
+     assertEq(c.balanceOf(address(this)), 100);
+     assertEq(c.balanceOf(0x1483783755C6d08070B69Dd9e3391c7C00e5F23c), 0);
+
+}
     
     
 }
