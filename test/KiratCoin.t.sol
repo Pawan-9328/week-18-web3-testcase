@@ -11,7 +11,7 @@ contract TestKiratCoin is Test {
          c = new KiratCoin();
     }
 
-  function testMint() public {
+  function testMint() public  {
     c.mint(address(this), 100);
     assertEq(c.balanceOf(address(this)), 100, "ok");
 
