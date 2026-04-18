@@ -56,6 +56,15 @@ function testApprovals() public{
    assertEq(c.allowance(address(this), 0x1483783755C6d08070B69Dd9e3391c7C00e5F23c), 5);
 
 }
+
+function testfailApprovals() public {
+   c.mint(address(this) , 100);
+   c.approve(0x1483783755C6d08070B69Dd9e3391c7C00e5F23c, 10);
+    // less then 10 allow but more then can't allow that time is fail if i access the 20 
+   vm.prank(0x1483783755C6d08070B69Dd9e3391c7C00e5F23c);
+   c.transferFrom(address(this), 0x1483783755C6d08070B69Dd9e3391c7C00e5F23c,20);
+
+}
     
     
 }
