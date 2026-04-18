@@ -11,7 +11,7 @@ contract TestKiratCoin is Test {
          c = new KiratCoin();
     }
 
-  function testMint() public  {
+function testMint() public  {
     c.mint(address(this), 100);
     assertEq(c.balanceOf(address(this)), 100, "ok");
 
@@ -39,6 +39,21 @@ function testTransfer() public{
 
      assertEq(c.balanceOf(address(this)), 100);
      assertEq(c.balanceOf(0x1483783755C6d08070B69Dd9e3391c7C00e5F23c), 0);
+
+}
+
+function testApprovals() public{
+   c.mint(address(this) , 100);
+
+   c.approve(0x1483783755C6d08070B69Dd9e3391c7C00e5F23c, 10);
+
+   vm.prank(0x1483783755C6d08070B69Dd9e3391c7C00e5F23c);
+
+   c.transferFrom(address(this), 0x1483783755C6d08070B69Dd9e3391c7C00e5F23c,5);
+
+   assertEq(c.balanceOf(address(this)), 95 ,  "ok");
+   assertEq(c.balanceOf(0x1483783755C6d08070B69Dd9e3391c7C00e5F23c), 5, "ok");
+   assertEq(c.allowance(address(this), 0x1483783755C6d08070B69Dd9e3391c7C00e5F23c), 5);
 
 }
     
